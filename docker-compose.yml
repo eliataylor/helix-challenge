@@ -1,0 +1,48 @@
+services:
+
+  # MySQL Database Service
+  mysqlv8:
+    image: mysql:8.0
+    container_name: mysqlv8-helixai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: localdb
+      MYSQL_USER: localuser
+      MYSQL_PASSWORD: localpassword
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Django Service
+  django:
+    build:
+      context: ./stack/django
+      dockerfile: Dockerfile
+    container_name: django-service-helixai
+    volumes:
+      - $HOME/.ssl:/root/.ssl:ro
+      - ./stack/django:/app/django
+      - ./stack/django/__pycache__:/app/django/__pycache__:cached  # Speed up reloads
+    env_file:
+      - ./stack/django/.env
+    depends_on:
+      mysqlv8:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    extra_hosts:
+      - "localapi.helix.ai:127.0.0.1"
+
+
+networks:
+  default:
+    name: my_helixai_network
+
+volumes:
+  mysql-data:

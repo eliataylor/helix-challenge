@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",                  // Use ES modules
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "outDir": "./dist",                 // Output directory for compiled files
+    "rootDir": "./src",                 // Root directory for source files
+    "strict": true,                     // Enable strict type checking
+    "esModuleInterop": true,            // Compatibility with ES modules
+    "resolveJsonModule": true,          // Allow importing JSON
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true  // Allow .ts file imports
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

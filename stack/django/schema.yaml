@@ -1,0 +1,3001 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /:
+    get:
+      operationId: root_retrieve
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/drug-comparisons:
+    get:
+      operationId: api_drug_comparisons_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDrugComparisonsList'
+          description: ''
+    post:
+      operationId: api_drug_comparisons_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugComparisons'
+          description: ''
+  /api/drug-comparisons/{id}:
+    get:
+      operationId: api_drug_comparisons_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Comparison.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugComparisons'
+          description: ''
+    put:
+      operationId: api_drug_comparisons_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Comparison.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DrugComparisons'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugComparisons'
+          description: ''
+    patch:
+      operationId: api_drug_comparisons_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Comparison.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugComparisons'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugComparisons'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugComparisons'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugComparisons'
+          description: ''
+    delete:
+      operationId: api_drug_comparisons_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Comparison.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/drug-effects:
+    get:
+      operationId: api_drug_effects_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDrugEffectsList'
+          description: ''
+    post:
+      operationId: api_drug_effects_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugEffects'
+          description: ''
+  /api/drug-effects/{id}:
+    get:
+      operationId: api_drug_effects_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Effect.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugEffects'
+          description: ''
+    put:
+      operationId: api_drug_effects_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Effect.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DrugEffects'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugEffects'
+          description: ''
+    patch:
+      operationId: api_drug_effects_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Effect.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugEffects'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugEffects'
+          description: ''
+    delete:
+      operationId: api_drug_effects_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug Effect.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/drugs:
+    get:
+      operationId: api_drugs_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDrugsList'
+          description: ''
+    post:
+      operationId: api_drugs_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drugs'
+          description: ''
+  /api/drugs/{id}:
+    get:
+      operationId: api_drugs_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drugs'
+          description: ''
+    put:
+      operationId: api_drugs_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Drugs'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drugs'
+          description: ''
+    patch:
+      operationId: api_drugs_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugs'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugs'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDrugs'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Drugs'
+          description: ''
+    delete:
+      operationId: api_drugs_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Drug.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/manufacturers:
+    get:
+      operationId: api_manufacturers_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedManufacturersList'
+          description: ''
+    post:
+      operationId: api_manufacturers_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manufacturers'
+          description: ''
+  /api/manufacturers/{id}:
+    get:
+      operationId: api_manufacturers_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Manufacturer.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manufacturers'
+          description: ''
+    put:
+      operationId: api_manufacturers_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Manufacturer.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Manufacturers'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manufacturers'
+          description: ''
+    patch:
+      operationId: api_manufacturers_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Manufacturer.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedManufacturers'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedManufacturers'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedManufacturers'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Manufacturers'
+          description: ''
+    delete:
+      operationId: api_manufacturers_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Manufacturer.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/oa-testers:
+    get:
+      operationId: api_oa_testers_list
+      description: List all users in the 'oa-tester' group.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOATesterList'
+          description: ''
+    post:
+      operationId: api_oa_testers_create
+      description: Create a new user and add them to the 'oa-tester' group.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OATester'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OATester'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OATester'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OATester'
+          description: ''
+  /api/oa-testers/{id}:
+    get:
+      operationId: api_oa_testers_retrieve
+      description: Retrieve a specific 'oa-tester' user by ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OATester'
+          description: ''
+    put:
+      operationId: api_oa_testers_update
+      description: Add the 'oa-tester' group to a specific user by ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OATester'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OATester'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OATester'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OATester'
+          description: ''
+    patch:
+      operationId: api_oa_testers_partial_update
+      description: Add the 'oa-tester' group to a specific user by ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedOATester'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedOATester'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedOATester'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OATester'
+          description: ''
+    delete:
+      operationId: api_oa_testers_destroy
+      description: Delete a specific 'oa-tester' user by ID, along with their content.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/oa-testers/search:
+    get:
+      operationId: api_oa_testers_search_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OATester'
+          description: ''
+  /api/schema:
+    get:
+      operationId: api_schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/side-effects:
+    get:
+      operationId: api_side_effects_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSideEffectsList'
+          description: ''
+    post:
+      operationId: api_side_effects_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SideEffects'
+          description: ''
+  /api/side-effects/{id}:
+    get:
+      operationId: api_side_effects_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Side Effect.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SideEffects'
+          description: ''
+    put:
+      operationId: api_side_effects_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Side Effect.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SideEffects'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SideEffects'
+          description: ''
+    patch:
+      operationId: api_side_effects_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Side Effect.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSideEffects'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSideEffects'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSideEffects'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SideEffects'
+          description: ''
+    delete:
+      operationId: api_side_effects_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Side Effect.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/trials:
+    get:
+      operationId: api_trials_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTrialsList'
+          description: ''
+    post:
+      operationId: api_trials_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trials'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Trials'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Trials'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trials'
+          description: ''
+  /api/trials/{id}:
+    get:
+      operationId: api_trials_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Trial.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trials'
+          description: ''
+    put:
+      operationId: api_trials_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Trial.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trials'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Trials'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Trials'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trials'
+          description: ''
+    patch:
+      operationId: api_trials_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Trial.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTrials'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTrials'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTrials'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trials'
+          description: ''
+    delete:
+      operationId: api_trials_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Trial.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/users:
+    get:
+      operationId: api_users_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUsersList'
+          description: ''
+    post:
+      operationId: api_users_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Users'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Users'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: ''
+  /api/users/{id}:
+    get:
+      operationId: api_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: ''
+    put:
+      operationId: api_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Users'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Users'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: ''
+    patch:
+      operationId: api_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUsers'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUsers'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUsers'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: ''
+    delete:
+      operationId: api_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/users/{user_id}/{model_name}/list:
+    get:
+      operationId: api_users_list_retrieve
+      parameters:
+      - in: path
+        name: model_name
+        schema:
+          type: string
+        required: true
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Search term
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
+  /api/users/{user_id}/{model_name}/stats:
+    get:
+      operationId: api_users_stats_retrieve
+      parameters:
+      - in: path
+        name: model_name
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/worksheets:
+    get:
+      operationId: api_worksheets_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSchemaVersionList'
+          description: ''
+    post:
+      operationId: api_worksheets_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+  /api/worksheets/{id}:
+    get:
+      operationId: api_worksheets_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+    put:
+      operationId: api_worksheets_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+    patch:
+      operationId: api_worksheets_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSchemaVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSchemaVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSchemaVersion'
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+    delete:
+      operationId: api_worksheets_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/worksheets/{id}/delete-version:
+    delete:
+      operationId: api_worksheets_delete_version_destroy
+      description: |-
+        Delete a specific version of a schema.
+        Only the author can delete their versions.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/worksheets/{id}/download:
+    get:
+      operationId: api_worksheets_download_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+  /api/worksheets/{id}/enhance:
+    post:
+      operationId: api_worksheets_enhance_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Schema Version.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+  /api/worksheets/generate:
+    post:
+      operationId: api_worksheets_generate_create
+      description: Toggle between streaming and non-streaming responses based on query
+        param `stream=true`.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SchemaVersion'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaVersion'
+          description: ''
+  /objectactions/auth/sms:
+    post:
+      operationId: objectactions_auth_sms_create
+      tags:
+      - objectactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhoneNumber'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PhoneNumber'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PhoneNumber'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: SMS sent successfully
+        '400':
+          description: Bad request
+  /objectactions/auth/verify-sms:
+    post:
+      operationId: objectactions_auth_verify_sms_create
+      tags:
+      - objectactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPhone'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VerifyPhone'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VerifyPhone'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: SMS sent successfully
+        '400':
+          description: Bad request
+  /u/drugcomparisons/{url_alias}/:
+    get:
+      operationId: u_drugcomparisons_retrieve
+      parameters:
+      - in: path
+        name: url_alias
+        schema:
+          type: string
+        required: true
+      tags:
+      - u
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrugComparisons'
+          description: ''
+components:
+  schemas:
+    ApprovalStatusEnum:
+      enum:
+      - approved
+      - experimental
+      type: string
+      description: |-
+        * `approved` - Approved
+        * `experimental` -  experimental
+    BlankEnum:
+      enum:
+      - ''
+    DrugComparisons:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        url_alias:
+          type: string
+          nullable: true
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        comparison_criteria: {}
+        expires:
+          type: string
+          format: date
+          nullable: true
+        ai_answer:
+          type: string
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        drugs:
+          type: array
+          items:
+            type: integer
+            nullable: true
+      required:
+      - comparison_criteria
+      - created_at
+      - id
+      - modified_at
+      - title
+    DrugEffects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        reported_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        author:
+          type: integer
+          nullable: true
+        drug:
+          type: integer
+          nullable: true
+        side_effect:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - id
+      - modified_at
+      - severity
+    Drugs:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+          maxLength: 255
+        approval_status:
+          $ref: '#/components/schemas/ApprovalStatusEnum'
+        target_cost:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        full_treatment_duration:
+          type: string
+          nullable: true
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+        manufacturer:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - id
+      - modified_at
+      - name
+    Manufacturers:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        location:
+          type: string
+          nullable: true
+          maxLength: 255
+        contact_info:
+          type: string
+          nullable: true
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - id
+      - modified_at
+      - name
+    NullEnum:
+      enum:
+      - null
+    OATester:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        phone:
+          type: string
+          maxLength: 16
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+      required:
+      - id
+      - phone
+      - username
+    PaginatedDrugComparisonsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DrugComparisons'
+    PaginatedDrugEffectsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DrugEffects'
+    PaginatedDrugsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Drugs'
+    PaginatedManufacturersList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Manufacturers'
+    PaginatedOATesterList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OATester'
+    PaginatedSchemaVersionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemaVersion'
+    PaginatedSideEffectsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SideEffects'
+    PaginatedTrialsList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Trials'
+    PaginatedUsersList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Users'
+    PatchedDrugComparisons:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        url_alias:
+          type: string
+          nullable: true
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        comparison_criteria: {}
+        expires:
+          type: string
+          format: date
+          nullable: true
+        ai_answer:
+          type: string
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        drugs:
+          type: array
+          items:
+            type: integer
+            nullable: true
+    PatchedDrugEffects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        reported_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        author:
+          type: integer
+          nullable: true
+        drug:
+          type: integer
+          nullable: true
+        side_effect:
+          type: integer
+          nullable: true
+    PatchedDrugs:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          nullable: true
+          maxLength: 255
+        approval_status:
+          $ref: '#/components/schemas/ApprovalStatusEnum'
+        target_cost:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        full_treatment_duration:
+          type: string
+          nullable: true
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+        manufacturer:
+          type: integer
+          nullable: true
+    PatchedManufacturers:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        location:
+          type: string
+          nullable: true
+          maxLength: 255
+        contact_info:
+          type: string
+          nullable: true
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+    PatchedOATester:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        phone:
+          type: string
+          maxLength: 16
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+    PatchedSchemaVersion:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        versions_count:
+          type: string
+          readOnly: true
+        version_tree:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        prompt:
+          type: string
+          maxLength: 4000
+        privacy:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/PrivacyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        assistant_id:
+          type: string
+          maxLength: 100
+        thread_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        message_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        run_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        openai_model:
+          type: string
+          nullable: true
+          maxLength: 100
+        reasoning:
+          type: string
+          nullable: true
+        schema:
+          nullable: true
+        version_notes:
+          type: string
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        project:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+    PatchedSideEffects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+    PatchedTrials:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        sample_size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        study_design:
+          type: string
+        study_duration:
+          type: string
+          maxLength: 255
+        health_status:
+          type: string
+          maxLength: 255
+        external_factors:
+          type: string
+          maxLength: 255
+        age_range:
+          type: string
+          maxLength: 255
+        bias:
+          type: string
+          nullable: true
+          maxLength: 255
+        bias_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        blinding:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        trial_phase:
+          $ref: '#/components/schemas/TrialPhaseEnum'
+        pros:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Patient Reported Outcomes
+        clinros:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Clinical Reported Outcomes
+        performance_outcomes:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        composite_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        complexity_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        success_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        drug:
+          type: integer
+          nullable: true
+        side_effects:
+          type: array
+          items:
+            type: integer
+            title: Side Effects
+    PatchedUsers:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        date_joined:
+          type: string
+          format: date-time
+        phone:
+          type: string
+          maxLength: 16
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+    PhoneNumber:
+      type: object
+      properties:
+        phone:
+          type: string
+      required:
+      - phone
+    PrivacyEnum:
+      enum:
+      - public
+      - unlisted
+      - inviteonly
+      - authusers
+      - onlyme
+      - archived
+      type: string
+      description: |-
+        * `public` - Public
+        * `unlisted` - Unlisted
+        * `inviteonly` - Invite Only
+        * `authusers` - Authenticated Users
+        * `onlyme` - Only Me
+        * `archived` - archived
+    SchemaVersion:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        versions_count:
+          type: string
+          readOnly: true
+        version_tree:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        prompt:
+          type: string
+          maxLength: 4000
+        privacy:
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/PrivacyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        assistant_id:
+          type: string
+          maxLength: 100
+        thread_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        message_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        run_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        openai_model:
+          type: string
+          nullable: true
+          maxLength: 100
+        reasoning:
+          type: string
+          nullable: true
+        schema:
+          nullable: true
+        version_notes:
+          type: string
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        project:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+      required:
+      - assistant_id
+      - created_at
+      - id
+      - prompt
+      - version_tree
+      - versions_count
+    SeverityEnum:
+      enum:
+      - mild
+      - medium
+      - severe
+      - fatal
+      type: string
+      description: |-
+        * `mild` - Mild
+        * `medium` - Medium
+        * `severe` - Severe
+        * `fatal` - Fatal
+    SideEffects:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        author:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - id
+      - modified_at
+      - name
+    StatusEnum:
+      enum:
+      - ongoing
+      - completed
+      - suspended
+      - terminated
+      type: string
+      description: |-
+        * `ongoing` - Ongoing
+        * `completed` -  completed
+        * `suspended` -  suspended
+        * `terminated` -  terminated
+    TrialPhaseEnum:
+      enum:
+      - phase_1
+      - phase_2
+      - phase_3
+      - phase_4
+      type: string
+      description: |-
+        * `phase_1` - Phase 1
+        * `phase_2` -  Phase 2
+        * `phase_3` -  Phase 3
+        * `phase_4` -  Phase 4
+    Trials:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        modified_at:
+          type: string
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        sample_size:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        study_design:
+          type: string
+        study_duration:
+          type: string
+          maxLength: 255
+        health_status:
+          type: string
+          maxLength: 255
+        external_factors:
+          type: string
+          maxLength: 255
+        age_range:
+          type: string
+          maxLength: 255
+        bias:
+          type: string
+          nullable: true
+          maxLength: 255
+        bias_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        blinding:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        trial_phase:
+          $ref: '#/components/schemas/TrialPhaseEnum'
+        pros:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Patient Reported Outcomes
+        clinros:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Clinical Reported Outcomes
+        performance_outcomes:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        composite_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        complexity_score:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        success_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        author:
+          type: integer
+          nullable: true
+        drug:
+          type: integer
+          nullable: true
+        side_effects:
+          type: array
+          items:
+            type: integer
+            title: Side Effects
+      required:
+      - age_range
+      - blinding
+      - created_at
+      - external_factors
+      - health_status
+      - id
+      - modified_at
+      - sample_size
+      - study_design
+      - study_duration
+      - title
+      - trial_phase
+    Users:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        date_joined:
+          type: string
+          format: date-time
+        phone:
+          type: string
+          maxLength: 16
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+      required:
+      - id
+      - phone
+      - username
+    VerifyPhone:
+      type: object
+      properties:
+        phone:
+          type: string
+        code:
+          type: string
+      required:
+      - code
+      - phone
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

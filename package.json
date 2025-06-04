@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@mui/icons-material": "^7.1.0",
+    "@trpc/client": "^11.2.0",
+    "@trpc/react-query": "^11.2.0",
+    "zod": "^3.25.46"
+  }
+}
