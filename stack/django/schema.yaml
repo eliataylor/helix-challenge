@@ -972,6 +972,53 @@ paths:
                 type: object
                 additionalProperties: {}
           description: ''
+  /api/search:
+    get:
+      operationId: api_search_retrieve
+      description: "\n    Search endpoint that searches across multiple content types.\n\
+        \    Returns grouped results by type with counts and metadata.\n    "
+      parameters:
+      - in: query
+        name: query
+        schema:
+          type: string
+        description: Search term to look for across selected types
+        required: true
+      - in: query
+        name: types
+        schema:
+          type: string
+        description: Comma-separated list of types to search in (e.g. Drugs,Manufacturers)
+        required: true
+      tags:
+      - Search
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+              examples:
+                SuccessResponse:
+                  value:
+                    results:
+                      Drugs:
+                        items:
+                        - id: 1
+                          name: Aspirin
+                          description: Pain reliever
+                        count: 1
+                    query: aspirin
+                    selected_types:
+                    - Drugs
+                    - Manufacturers
+                  summary: Success Response
+          description: ''
+        '400':
+          description: No response body
   /api/side-effects:
     get:
       operationId: api_side_effects_list
@@ -1819,7 +1866,7 @@ paths:
           description: SMS sent successfully
         '400':
           description: Bad request
-  /u/drugcomparisons/{url_alias}/:
+  /u/drugcomparisons/{url_alias}:
     get:
       operationId: u_drugcomparisons_retrieve
       parameters:
@@ -1920,9 +1967,6 @@ components:
         author:
           type: integer
           nullable: true
-        drug:
-          type: integer
-          nullable: true
         side_effect:
           type: integer
           nullable: true
@@ -1969,6 +2013,12 @@ components:
         manufacturer:
           type: integer
           nullable: true
+        drug_effects:
+          type: array
+          items:
+            type: integer
+            nullable: true
+            title: Drug Effects
       required:
       - created_at
       - id
@@ -2340,9 +2390,6 @@ components:
         author:
           type: integer
           nullable: true
-        drug:
-          type: integer
-          nullable: true
         side_effect:
           type: integer
           nullable: true
@@ -2384,6 +2431,12 @@ components:
         manufacturer:
           type: integer
           nullable: true
+        drug_effects:
+          type: array
+          items:
+            type: integer
+            nullable: true
+            title: Drug Effects
     PatchedManufacturers:
       type: object
       properties:
@@ -2639,11 +2692,11 @@ components:
         drug:
           type: integer
           nullable: true
-        side_effects:
+        drug_effects:
           type: array
           items:
             type: integer
-            title: Side Effects
+            title: Drug Effects
     PatchedUsers:
       type: object
       properties:
@@ -2774,6 +2827,39 @@ components:
       - prompt
       - version_tree
       - versions_count
+    SearchResponse:
+      type: object
+      properties:
+        results:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SearchResult'
+          description: Search results grouped by type
+        query:
+          type: string
+          description: Search term used
+        selected_types:
+          type: array
+          items:
+            type: string
+          description: Types that were searched
+      required:
+      - query
+      - results
+      - selected_types
+    SearchResult:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        count:
+          type: integer
+      required:
+      - count
+      - items
     SeverityEnum:
       enum:
       - mild
@@ -2923,11 +3009,11 @@ components:
         drug:
           type: integer
           nullable: true
-        side_effects:
+        drug_effects:
           type: array
           items:
             type: integer
-            title: Side Effects
+            title: Drug Effects
       required:
       - age_range
       - blinding

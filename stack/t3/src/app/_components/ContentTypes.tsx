@@ -216,20 +216,20 @@ const DrugEffectCard = ({ item }: CardWrapperProps<"DrugEffects">) => {
       <CardHeader
         avatar={<Avatar><DrugEffectIcon /></Avatar>}
         action={<Actions item={item} />}
-        title={`${item.reported_count} cases of ${item.severity} ${item.side_effect?.str}`}
-        subheader={
+        title={<Typography variant="body2">
+          {item.side_effect?.str}
+          
           <Chip
-            size="small"
+            size="small" sx={{ml:1}}
             label={item.severity}
             color={getSeverityColor(item.severity) as any}
           />
-        }
-      />
-      <CardContent>
-        <Typography variant="body2">
+          
+        </Typography>}
+        subheader={<Typography variant="body2">
           Reported Count: {item.reported_count}
-        </Typography>
-      </CardContent>
+        </Typography>}
+      />
     </Card>
   )
 }

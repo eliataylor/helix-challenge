@@ -8,16 +8,25 @@ import {
   Chip,
   InputAdornment,
   IconButton,
-  Paper
+  Paper,
+  CircularProgress
 } from "@mui/material"
 import { Search as SearchIcon, Clear as ClearIcon } from "@mui/icons-material"
 import { NAVITEMS, type ModelName } from "~/types/types"
 import { useDebounce } from "~/hooks/useDebounce"
 import { useSearchParams, useRouter, usePathname } from "next/navigation"
+import { api } from "~/trpc/react"
+import { type TRPCClientError } from "@trpc/client"
+import { skipToken } from "@tanstack/react-query"
 
 interface SearchBoxProps {
   onSearch: (query: string, types: ModelName[]) => void
   defaultTypes?: ModelName[]
+}
+
+interface AutocompleteSuggestion {
+  id: number;
+  label: string;
 }
 
 export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
@@ -29,12 +38,27 @@ export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
   const [selectedTypes, setSelectedTypes] = useState<ModelName[]>(
     searchParams.get("types")?.split(",").filter(Boolean) as ModelName[] ?? defaultTypes
   )
+  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<AutocompleteSuggestion[]>([])
 
   // Filter out vocabulary types and admin-only types
   const searchableTypes = NAVITEMS.filter(item =>
     item.model_type !== 'vocabulary' &&
     item.permissions !== 'IsAdmin' &&
     item.search_fields.length > 0
+  )
+
+  // Setup autocomplete query
+  const shouldEnableAutocomplete = selectedTypes.length === 1 && searchQuery.trim().length > 0
+  const { data: suggestions, isLoading } = api.search.autocomplete.useQuery(
+    shouldEnableAutocomplete && selectedTypes[0]
+      ? {
+          type: selectedTypes[0],
+          query: searchQuery.trim()
+        }
+      : skipToken,
+    {
+      enabled: shouldEnableAutocomplete
+    }
   )
 
   const updateUrl = useCallback((query: string, types: ModelName[]) => {
@@ -73,6 +97,7 @@ export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
 
   const handleTypesChange = (_event: any, newTypes: ModelName[]) => {
     setSelectedTypes(newTypes)
+    setAutocompleteSuggestions([]) // Clear suggestions when types change
     if (searchQuery.trim()) {
       handleSearch(searchQuery, newTypes)
     }
@@ -81,6 +106,7 @@ export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
   const handleClear = () => {
     setSearchQuery("")
     setSelectedTypes([])
+    setAutocompleteSuggestions([])
     updateUrl("", [])
   }
 
@@ -97,6 +123,13 @@ export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
       }
     }
   }, [])
+
+  // Update suggestions when query results change
+  useEffect(() => {
+    if (suggestions) {
+      setAutocompleteSuggestions(suggestions)
+    }
+  }, [suggestions])
 
   return (
     <Paper
@@ -137,27 +170,48 @@ export function SearchBox({ onSearch, defaultTypes = [] }: SearchBoxProps) {
         }
       />
 
-      <TextField
+      <Autocomplete
         fullWidth
+        freeSolo
         value={searchQuery}
-        onChange={handleQueryChange}
-        placeholder="Search..."
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-          endAdornment: searchQuery && (
-            <InputAdornment position="end">
-              <IconButton size="small" onClick={handleClear}>
-                <ClearIcon />
-              </IconButton>
-            </InputAdornment>
-          )
+        onChange={(_event, newValue) => {
+          if (newValue) {
+            setSearchQuery(newValue)
+            handleSearch(newValue, selectedTypes)
+          }
         }}
+        onInputChange={(_event, newValue) => {
+          setSearchQuery(newValue)
+          handleSearch(newValue, selectedTypes)
+        }}
+        options={autocompleteSuggestions.map(suggestion => suggestion.label)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            placeholder="Search..."
+            InputProps={{
+              ...params.InputProps,
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <>
+                  {isLoading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : searchQuery && (
+                    <IconButton size="small" onClick={handleClear}>
+                      <ClearIcon />
+                    </IconButton>
+                  )}
+                  {params.InputProps.endAdornment}
+                </>
+              )
+            }}
+          />
+        )}
       />
-      
     </Paper>
   )
 } 

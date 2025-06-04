@@ -223,7 +223,8 @@ const Challenge: FC = () => {
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Include unit tests for at least one key component (Jest + React Testing Library)</span>
-                            {githubLink("t3/src/app/search/__tests__/page.test.tsx", "src/app/search/__tests__/page.test.tsx - Search page tests")}
+                            {githubLink("t3/src/app/search/__tests__/page.test.tsx", "t3/src/app/search/__tests__/page.test.tsx - Search page tests")}
+                            {githubLink("cypress/cypress/e2e/read-only/navigate-drawer.cy.js", "cypress/cypress/e2e/read-only/navigate-drawer.cy.js - cypress tests")}
                         </div>
                     </div>
                 </div>

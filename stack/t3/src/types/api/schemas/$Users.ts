@@ -1,0 +1,54 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export const $Users = {
+  properties: {
+    id: {
+      type: 'number',
+      isReadOnly: true,
+      isRequired: true,
+    },
+    last_login: {
+      type: 'string',
+      isNullable: true,
+      format: 'date-time',
+    },
+    username: {
+      type: 'string',
+      description: `Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.`,
+      isRequired: true,
+      maxLength: 150,
+      pattern: '^[\\w.@+-]+$',
+    },
+    first_name: {
+      type: 'string',
+      maxLength: 150,
+    },
+    last_name: {
+      type: 'string',
+      maxLength: 150,
+    },
+    date_joined: {
+      type: 'string',
+      format: 'date-time',
+    },
+    phone: {
+      type: 'string',
+      isRequired: true,
+      maxLength: 16,
+    },
+    groups: {
+      type: 'array',
+      contains: {
+        type: 'number',
+      },
+    },
+    user_permissions: {
+      type: 'array',
+      contains: {
+        type: 'number',
+      },
+    },
+  },
+} as const;

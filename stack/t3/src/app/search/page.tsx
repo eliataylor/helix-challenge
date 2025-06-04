@@ -71,8 +71,7 @@ export default function SearchPage() {
             const response = await ApiClient.get<SearchResponse>(`/api/search?${params.toString()}`);
 
             if (!response.success || !response.data) {
-                // throw new Error(response.error || 'Search failed');
-                setError(response.error || 'Search failed');
+                throw new Error(response.error || 'Search failed');
             } else {
                 setSearchResults(response.data);
                 setError(null);
