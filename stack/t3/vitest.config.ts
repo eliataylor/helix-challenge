@@ -9,6 +9,10 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
     css: true,
+    alias: {
+      'next/server': resolve(__dirname, './src/test/mocks/next-server.ts'),
+      'next/navigation': resolve(__dirname, './src/test/mocks/next-navigation.ts'),
+    },
   },
   resolve: {
     alias: {

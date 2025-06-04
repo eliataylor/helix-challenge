@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation"
 import { SearchBox } from "~/app/_components/SearchBox"
 import { useState, useCallback } from "react"
-import { type ModelName, NAVITEMS, type SearchResult, type SearchResponse, type ModelType } from "~/types/types"
+import { type ModelName, NAVITEMS, type SearchResponse } from "~/types/types"
 import { Box, Typography, CircularProgress, Alert } from "@mui/material"
 import { CardWrapper } from "~/app/_components/ContentTypes"
 import ApiClient from "../_components/ApiClient"
@@ -46,7 +46,6 @@ export default function SearchPage() {
 
     const performSearch = useCallback(async (searchQuery: string, searchTypes: ModelName[]) => {
         try {
-
             // Only proceed if we have a valid query
             if (!searchQuery.trim()) {
                 setSearchResults(null);
@@ -75,18 +74,16 @@ export default function SearchPage() {
             } else {
                 setSearchResults(response.data);
                 setError(null);
-                setIsLoading(false);
             }
-
 
         } catch (err) {
             setError(err instanceof Error ? err : new Error("Unknown error occurred"));
         } finally {
             setIsLoading(false);
         }
-    }, [types, query]);
+    }, []);
 
-    function renderError() : string{
+    function renderError() : string {
         if (error) {
             if (error instanceof z.ZodError) {
                 return JSON.stringify(error.format(), null, 2);
@@ -95,7 +92,6 @@ export default function SearchPage() {
         }
         return "unknown error";
     }
-
 
     return (
         <Box sx={{ p: 2 }}>
@@ -127,14 +123,14 @@ export default function SearchPage() {
 
                             return (
                                 <Box key={type} sx={{ mb: 4, mt:2 }}>
-                                    <Box  sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Typography variant="h6" gutterBottom>
-                                        {navItem.plural} ({result.count})
-                                    </Typography>
-                                    <SelectionCount type={navItem.type} />
+                                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <Typography variant="h6" gutterBottom>
+                                            {navItem.plural} ({result.count})
+                                        </Typography>
+                                        <SelectionCount type={navItem.type} />
                                     </Box>
                                     <Box sx={{ display: 'grid', gap: 2 }}>
-                                        {(!result?.items || result.items.length === 0) ? null :result.items.map((item: ModelType<ModelName>) => (
+                                        {(!result?.items || result.items.length === 0) ? null : result.items.map((item) => (
                                             <CardWrapper
                                                 key={item.id}
                                                 item={item}

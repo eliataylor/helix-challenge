@@ -6,7 +6,7 @@ module.exports = defineConfig({
   trashAssetsBeforeRuns: false,
   videoCompression: true,
   e2e: {
-    baseUrl: "https://localhost.helix.ai:3003",
+    baseUrl: "https://localhost:3003",
     chromeWebSecurity: false,
     experimentalSessionAndOrigin: true,
     excludeSpecPattern: "cypress/e2e/examples",

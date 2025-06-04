@@ -101,7 +101,7 @@ const Challenge: FC = () => {
                         <div className="flex flex-col">
                             <span className="text-gray-700">Use a mock REST API or a static JSON file</span>
                             {githubLink("django/schema.yaml", "django/schema.yaml > /api/drugs/{id} endpoint")}
-                            {githubLink("stack/t3/src/server/api/routers/search.ts", "stack/t3/src/server/api/routers/search.ts - broken with self-signed certs locally")}
+                            {githubLink("stack/t3/src/server/api/routers/search.ts", "stack/t3/src/server/api/routers/search.ts")}
                             {githubLink("django/helixai_app/views.py", "django/helixai_app/views.py - DrugsViewSet with name search")}
                         </div>
                     </div>
@@ -198,7 +198,7 @@ const Challenge: FC = () => {
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Use Next.js features: routing, data fetching, image optimization</span>
-                            <span className="text-sm text-gray-500 ml-2">→ Dynamic routes, API integration, and Next.js Image component usage</span>
+                            {githubLink("stack/t3/src/middleware.ts", "stack/t3/src/middleware.ts - middleware for authentication. skips api requests")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
