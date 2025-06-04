@@ -74,21 +74,21 @@ const Challenge: FC = () => {
                 <h2 className="text-2xl font-semibold text-gray-800">🔍 Drug Search Page</h2>
                 <div className="space-y-2">
                     <div className="flex items-start gap-3">
-                        <HalfCheckedIcon />
+                    <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">A search input to look up drugs by name (partial matches supported)</span>
                             {githubLink("t3/src/app/_components/SearchBox.tsx", "t3/src/app/_components/SearchBox.tsx")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <HalfCheckedIcon />
+                    <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Display a list of results with drug name, approval status, and known side effects</span>
                             {githubLink("t3/src/app/search/page.tsx", "src/app/search/page.tsx - Search results")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <NotCompletedIcon />
+                    <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Data fetched server-side using <s>getServerSideProps</s>  or API routes</span>
                             {githubLink("stack/t3/src/app/[segment]/page.tsx", "stack/t3/src/app/[segment]/page.tsx (server side rendering)")}
@@ -120,10 +120,13 @@ const Challenge: FC = () => {
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <HalfCheckedIcon />
+                    <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Use getStaticPaths + getStaticProps to statically generate drug pages</span>
                             <span className="text-sm text-gray-500 ml-2">→ django/schema.yaml - /api/drugs/{'{'}id{'}'} endpoint</span>
+                            {githubLink("stack/t3/src/app/[segment]/page.tsx", "stack/t3/src/app/[segment]/page.tsx - generateStaticParams")}
+                            
+
                         </div>
                     </div>
                     <div className="flex items-start gap-3">

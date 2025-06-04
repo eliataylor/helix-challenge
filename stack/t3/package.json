@@ -25,7 +25,7 @@
     "test": "vitest",
     "test:watch": "vitest watch",
     "typecheck": "tsc --noEmit",
-    "generate:api-types": "ts-node scripts/generate-api-types.ts"
+    "generate:api-types": "NODE_OPTIONS='--loader ts-node/esm' ts-node --esm scripts/generate-api-types.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.2",
@@ -74,6 +74,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.0.15",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.4",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.27.0",

@@ -801,7 +801,7 @@ export const NAVITEMS: { [K in ModelName]: NavItem<K> }[ModelName][] = [
     "api": "/api/drug-effects",
     "icon": "LocalHospital",
     "search_fields": [
-      "drug__name",
+      "drug_to_effects__name",
       "side_effect__name"
     ],
     "permissions": "IsAuthenticatedOrReadOnly"
