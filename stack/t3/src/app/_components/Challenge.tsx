@@ -93,16 +93,15 @@ const Challenge: FC = () => {
                             <span className="text-gray-700">Data fetched server-side using <s>getServerSideProps</s>  or API routes</span>
                             {githubLink("stack/t3/src/app/[segment]/page.tsx", "stack/t3/src/app/[segment]/page.tsx (server side rendering)")}
                             {githubLink("stack/t3/src/app/search/page.tsx", "stack/t3/src/app/search/page.tsx (client side requests)")}
-                            {githubLink("t3/src/server/api/routers/search.ts", "t3/src/server/api/routers/search.ts (tRPC)")}
+                            {githubLink("t3/src/server/api/routers/search.bak.ts", "t3/src/server/api/routers/search.bak.ts (tRPC experiment)")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Use a mock REST API or a static JSON file</span>
-                            {githubLink("django/schema.yaml", "django/schema.yaml > /api/drugs/{id} endpoint")}
+                            {githubLink("django/schema.yaml", "For REST api - django/schema.yaml")}
                             {githubLink("stack/t3/src/server/api/routers/search.ts", "stack/t3/src/server/api/routers/search.ts")}
-                            {githubLink("django/helixai_app/views.py", "django/helixai_app/views.py - DrugsViewSet with name search")}
                         </div>
                     </div>
                 </div>
@@ -116,39 +115,36 @@ const Challenge: FC = () => {
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Route: /drug/[id]</span>
-                            <span className="text-sm text-gray-500 ml-2">→ Next.js directory based routing</span>
+                            <span className="text-sm text-gray-500 ml-2">→ Dynamic [segment]/[id] routing to render any content type</span>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                     <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Use getStaticPaths + getStaticProps to statically generate drug pages</span>
-                            <span className="text-sm text-gray-500 ml-2">→ django/schema.yaml - /api/drugs/{'{'}id{'}'} endpoint</span>
-                            {githubLink("stack/t3/src/app/[segment]/page.tsx", "stack/t3/src/app/[segment]/page.tsx - generateStaticParams")}
-                            
-
+                            {githubLink("stack/t3/src/app/[segment]/page.tsx", "uses generateStaticParams for static generation")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Display full info: Name, Approval Status, Manufacturer</span>
-                            {githubLink("t3/src/app/_components/ContentTypes.tsx", "src/app/_components/ContentTypes.tsx - DrugDetails component")}
-                            {githubLink("t3/src/object-actions/types/types.ts", "src/object-actions/types/types.ts - Drugs interface")}
+                            {githubLink("t3/src/app/_components/ContentTypes.tsx", "src/app/_components/ContentTypes.tsx - DrupCard + DrugDetails component")}
+                            {githubLink("t3/src/object-actions/types/types.ts", "src/object-actions/types/types.ts - Drugs TS interface")}
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">Clinical Trial Summary</span>
-                            {githubLink("t3/src/app/_components/ContentTypes.tsx", "src/app/_components/ContentTypes.tsx - DrugDetails trials section")}
+                            <span className="text-sm text-gray-500 ml-2">→ See /trails</span>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
                         <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">List of Similar Drugs</span>
-                            {githubLink("t3/src/app/_components/ContentTypes.tsx", "src/app/_components/ContentTypes.tsx - Related drugs section")}
+                            <span className="text-sm text-gray-500 ml-2">→ See /compare/[type]</span>
                         </div>
                     </div>
                 </div>
@@ -245,7 +241,7 @@ const Challenge: FC = () => {
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <HalfCheckedIcon />
+                    <CompletedIcon />
                         <div className="flex flex-col">
                             <span className="text-gray-700">A short README with architecture & data-fetching decisions, known limitations or tradeoffs, and setup instructions</span>
                             {githubLink("README.md", "README.md")}
